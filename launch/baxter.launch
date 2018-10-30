@@ -1,0 +1,33 @@
+<launch>
+    <!-- define args -->
+    <arg name="use_file" default="true" />
+    <arg name="use_rviz" default="true" />
+    <arg name="file"  default="$(find kinematics_animation)/demos/baxter/clothing_trajectory.csv" />
+    <arg name="freq" default="50.0" />
+
+    <!-- urdf xml robot description loaded on the Parameter Server-->
+    <param name="robot_description" command="$(find xacro)/xacro.py --inorder $(find baxter_description)/urdf/baxter.urdf.xacro"/>
+
+    <!-- Keep it disabled. I am keeping it for debugging purpose only -->
+    <group if="false">
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+            <param name="use_gui" value="true" />
+        </node>
+    </group>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+    <!-- robot visualization -->
+    <group if="$(arg use_rviz)">
+        <node pkg="rviz" type="rviz" respawn="false" name="rviz"
+          args="-d $(find kinematics_animation)/demos/baxter/baxter_rviz_config.rviz" />
+    </group>
+
+    <!-- Animation from player.py-->
+    <group if="$(arg use_file)">
+        <node pkg="kinematics_animation" type="player.py" name="baxter_animation" output="screen">
+            <param name="file" value="$(arg file)" />
+            <param name="freq" value="$(arg freq)" />
+        </node>
+    </group>
+</launch>
