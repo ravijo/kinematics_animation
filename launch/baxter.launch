@@ -2,7 +2,7 @@
     <!-- define args -->
     <arg name="use_file" default="true" />
     <arg name="use_rviz" default="true" />
-    <arg name="file"  default="$(find kinematics_animation)/demos/baxter/clothing_trajectory.csv" />
+    <arg name="file"  default="$(find kinematics_animation)/demos/baxter/trajectory.csv" />
     <arg name="freq" default="50.0" />
 
     <!-- urdf xml robot description loaded on the parameter server-->
