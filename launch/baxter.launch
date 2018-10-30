@@ -5,10 +5,10 @@
     <arg name="file"  default="$(find kinematics_animation)/demos/baxter/clothing_trajectory.csv" />
     <arg name="freq" default="50.0" />
 
-    <!-- urdf xml robot description loaded on the Parameter Server-->
+    <!-- urdf xml robot description loaded on the parameter server-->
     <param name="robot_description" command="$(find xacro)/xacro.py --inorder $(find baxter_description)/urdf/baxter.urdf.xacro"/>
 
-    <!-- Keep it disabled. I am keeping it for debugging purpose only -->
+    <!-- keep it disabled. (for debugging purpose only) -->
     <group if="false">
         <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
             <param name="use_gui" value="true" />
@@ -23,7 +23,7 @@
           args="-d $(find kinematics_animation)/demos/baxter/baxter_rviz_config.rviz" />
     </group>
 
-    <!-- Animation from player.py-->
+    <!-- animation from player.py-->
     <group if="$(arg use_file)">
         <node pkg="kinematics_animation" type="player.py" name="baxter_animation" output="screen">
             <param name="file" value="$(arg file)" />
