@@ -21,3 +21,6 @@ A robotic manipulator visualization and animation tool based on kinematics
 1. Provide the `urdf.xacro` file of the new robot as `robot_description` parameter
 1. Provide the rviz file as per new robot under `rviz` package
 1. Create a new python script to read the input csv file. Make sure that the newly created python script must publish all the joint state
+
+## Issues (or Error Reporting)
+Please check [here](https://github.com/ravijo/kinematics_animation/issues) and create issues accordingly.
